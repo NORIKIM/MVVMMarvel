@@ -42,7 +42,9 @@ extension Network: TargetType {
     }
     
     var task: Moya.Task {
-        return .requestPlain
+        let apiPublicKey = Bundle.main.apiPublicKey
+        let param = ["apikey": apiPublicKey]
+        return .requestParameters(parameters: param, encoding: URLEncoding.default)
 //        switch self {
 //        case .characters:
 //            <#code#>
