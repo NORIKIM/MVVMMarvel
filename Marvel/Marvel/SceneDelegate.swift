@@ -17,15 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             
             let navi = UINavigationController()
-            navi.isNavigationBarHidden = true
             
             window.backgroundColor = .white
             window.rootViewController = navi
             
             let appCoordinator = AppCoordinator(navi: navi)
+            appCoordinator.start()
             window.makeKeyAndVisible()
             
-            appCoordinator.start()
+            
         }
     }
 
