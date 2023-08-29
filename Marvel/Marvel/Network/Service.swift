@@ -17,17 +17,15 @@ struct Service {
         provider.request(.characters) { result in
             switch result {
             case .success(let response):
-//                let character = try? response.map(CharacterDataWrapper.self)
-//                print(character)
-//                completion(true, character)
                 do {
                     let character = try response.map(CharacterDataWrapper.self)
                     print(character)
+                    completion(true, character)
                 } catch(let err) {
                     print(err.localizedDescription)
+                    completion(false, nil)
                 }
-
-                
+  
             case .failure(let error):
                 print(error.localizedDescription)
                 completion(false, nil)
