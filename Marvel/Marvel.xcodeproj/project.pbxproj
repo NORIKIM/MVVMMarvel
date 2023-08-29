@@ -10,7 +10,7 @@
 		22F22CE973424C58660E3AEC /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D801F8F9D8B31BA85EE416 /* Pods_Marvel.framework */; };
 		252177A42A9A17B200B433D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252177A32A9A17B200B433D2 /* AppDelegate.swift */; };
 		252177A62A9A17B200B433D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252177A52A9A17B200B433D2 /* SceneDelegate.swift */; };
-		252177A82A9A17B200B433D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252177A72A9A17B200B433D2 /* ViewController.swift */; };
+		252177A82A9A17B200B433D2 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252177A72A9A17B200B433D2 /* MainVC.swift */; };
 		252177AB2A9A17B200B433D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252177A92A9A17B200B433D2 /* Main.storyboard */; };
 		252177AD2A9A17B500B433D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252177AC2A9A17B500B433D2 /* Assets.xcassets */; };
 		252177B02A9A17B500B433D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252177AE2A9A17B500B433D2 /* LaunchScreen.storyboard */; };
@@ -20,13 +20,15 @@
 		252177C02A9CA18000B433D2 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252177BF2A9CA18000B433D2 /* Service.swift */; };
 		252177C22A9CC71E00B433D2 /* NetworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 252177C12A9CC71E00B433D2 /* NetworkInfo.plist */; };
 		252177C52A9CC81E00B433D2 /* Extension+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252177C42A9CC81E00B433D2 /* Extension+Bundle.swift */; };
+		25860C1A2A9DD3C80025BBE8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25860C192A9DD3C80025BBE8 /* Coordinator.swift */; };
+		25860C1C2A9DD6820025BBE8 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25860C1B2A9DD6820025BBE8 /* MainVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		252177A02A9A17B200B433D2 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		252177A32A9A17B200B433D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		252177A52A9A17B200B433D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		252177A72A9A17B200B433D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		252177A72A9A17B200B433D2 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		252177AA2A9A17B200B433D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		252177AC2A9A17B500B433D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		252177AF2A9A17B500B433D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +39,8 @@
 		252177BF2A9CA18000B433D2 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		252177C12A9CC71E00B433D2 /* NetworkInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NetworkInfo.plist; sourceTree = "<group>"; };
 		252177C42A9CC81E00B433D2 /* Extension+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Bundle.swift"; sourceTree = "<group>"; };
+		25860C192A9DD3C80025BBE8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		25860C1B2A9DD6820025BBE8 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		B0EA2D8D3D3412D1AF92092A /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
 		D6D801F8F9D8B31BA85EE416 /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD722DFFB6E99990FA52266F /* Pods-Marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.release.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"; sourceTree = "<group>"; };
@@ -75,17 +79,17 @@
 		252177A22A9A17B200B433D2 /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
-				252177C32A9CC7E900B433D2 /* Extension */,
-				252177BC2A9C7D0D00B433D2 /* Network */,
-				252177B72A9C780900B433D2 /* Model */,
 				252177A32A9A17B200B433D2 /* AppDelegate.swift */,
 				252177A52A9A17B200B433D2 /* SceneDelegate.swift */,
-				252177A72A9A17B200B433D2 /* ViewController.swift */,
 				252177A92A9A17B200B433D2 /* Main.storyboard */,
 				252177AC2A9A17B500B433D2 /* Assets.xcassets */,
 				252177AE2A9A17B500B433D2 /* LaunchScreen.storyboard */,
 				252177B12A9A17B500B433D2 /* Info.plist */,
 				252177C12A9CC71E00B433D2 /* NetworkInfo.plist */,
+				25860C162A9DD0B90025BBE8 /* View */,
+				252177C32A9CC7E900B433D2 /* Extension */,
+				252177BC2A9C7D0D00B433D2 /* Network */,
+				252177B72A9C780900B433D2 /* Model */,
 			);
 			path = Marvel;
 			sourceTree = "<group>";
@@ -114,6 +118,16 @@
 				252177C42A9CC81E00B433D2 /* Extension+Bundle.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		25860C162A9DD0B90025BBE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25860C192A9DD3C80025BBE8 /* Coordinator.swift */,
+				252177A72A9A17B200B433D2 /* MainVC.swift */,
+				25860C1B2A9DD6820025BBE8 /* MainVM.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A4FDE4D7B2E480069642C4D9 /* Frameworks */ = {
@@ -249,7 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				252177A82A9A17B200B433D2 /* ViewController.swift in Sources */,
+				252177A82A9A17B200B433D2 /* MainVC.swift in Sources */,
+				25860C1C2A9DD6820025BBE8 /* MainVM.swift in Sources */,
 				252177BB2A9C7A1F00B433D2 /* CharacterResult.swift in Sources */,
 				252177BE2A9C7D1D00B433D2 /* Network.swift in Sources */,
 				252177C52A9CC81E00B433D2 /* Extension+Bundle.swift in Sources */,
@@ -257,6 +272,7 @@
 				252177C02A9CA18000B433D2 /* Service.swift in Sources */,
 				252177A62A9A17B200B433D2 /* SceneDelegate.swift in Sources */,
 				252177B92A9C783200B433D2 /* Character.swift in Sources */,
+				25860C1A2A9DD3C80025BBE8 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +428,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,6 +461,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
