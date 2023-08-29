@@ -13,13 +13,12 @@ struct Service {
     private let provider = MoyaProvider<Network>()
     typealias callback = (_ isSuccess: Bool, _ result: Any?) -> ()
 
-    func requestCharacter(completion: @escaping callback) {
-        provider.request(.characters) { result in
+    func requestCharacter(page: Int, completion: @escaping callback) {
+        provider.request(.characters(page: page)) { result in
             switch result {
             case .success(let response):
                 do {
                     let character = try response.map(CharacterDataWrapper.self)
-                    print(character)
                     completion(true, character)
                 } catch(let err) {
                     print(err.localizedDescription)
