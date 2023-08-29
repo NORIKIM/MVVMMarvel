@@ -22,4 +22,10 @@ extension Bundle {
         }
         return key
     }
+    var apiPrivateKey: String {
+        guard let key = networkInfoResource["API_PRIVATE_KEY"] as? String else {
+            fatalError("api key가 필요합니다.")
+        }
+        return key
+    }
 }
