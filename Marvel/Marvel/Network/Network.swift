@@ -10,7 +10,7 @@ import Moya
 import CryptoKit
 
 enum Network {
-    case characters
+    case characters(page: Int)
     case comics(id: Int)
     case series(id: Int)
     case stories(id: Int)
@@ -47,8 +47,17 @@ extension Network: TargetType {
         let apiPrivateKey = Bundle.main.apiPrivateKey
         let apiPublicKey = Bundle.main.apiPublicKey
         let hash = MD5(string: "\(timestamp)\(apiPrivateKey)\(apiPublicKey)")
-        let param = ["ts": timestamp, "apikey": apiPublicKey, "hash": hash]
+        var param = ["ts": timestamp, "apikey": apiPublicKey, "hash": hash]
         
+        switch self {
+        case .characters(let page):
+            if page > 0 {
+                param.updateValue("\(page * 20)", forKey: "offset")
+            }
+        case .comics, .series, .stories, .events:
+            param = ["ts": timestamp, "apikey": apiPublicKey, "hash": hash]
+        }
+         
         return .requestParameters(parameters: param, encoding: URLEncoding.queryString)
     }
     
