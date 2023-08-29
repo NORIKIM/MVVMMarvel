@@ -16,7 +16,8 @@ class AppCoordinator {
     }
     
     func start() {
-        let mainVC = MainVC()
+        let mainVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "MainVC") as! MainVC
         navi.setViewControllers([mainVC], animated: true)
     }
 }
