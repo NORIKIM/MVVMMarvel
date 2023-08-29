@@ -13,30 +13,62 @@ struct Thumbnail: Codable {
         case extensionString = "extension"
     }
     
-    let path: String
-    let extensionString: String
+    let path: String?
+    let extensionString: String?
 }
 
 
-
-// Comics, Series, Stories, Events
-struct CSSE: Codable {
-    let available: Int
-    let collectionURL: String
-    let items: [Item]
-    let returned: Int
+struct ComicList: Codable {
+    let available: Int?
+    let returned: Int?
+    let collectionURI: String?
+    let items: [ComicSummary]?
 }
-struct Item: Codable {
-    let resourceURI: String
+struct ComicSummary: Codable {
+    let resourceURI: String?
+    let name: String
+}
+
+struct SeriesList: Codable {
+    let available: Int?
+    let returned: Int?
+    let collectionURI: String?
+    let items: [SeriesSummary]?
+}
+struct SeriesSummary: Codable {
+    let resourceURI: String?
     let name: String
     let type: String?
 }
 
 
+struct StoryList: Codable {
+    let available: Int?
+    let returned: Int?
+    let collectionURI: String?
+    let items: [StorySummary]?
+}
+struct StorySummary: Codable {
+    let resourceURI: String?
+    let name: String
+    let type: String?
+}
+
+struct EventList: Codable {
+    let available: Int?
+    let returned: Int?
+    let collectionURI: String?
+    let items: [EventSummary]?
+}
+struct EventSummary: Codable {
+    let resourceURI: String?
+    let name: String
+    let type: String?
+}
 
 
-struct Urls: Codable {
-    let type: String
-    let url: String
+struct Url: Codable {
+    let type: String?
+    let url: String?
 }
 

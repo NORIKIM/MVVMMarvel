@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import CryptoKit
 
 enum Network {
     case characters
@@ -18,7 +19,7 @@ enum Network {
 
 extension Network: TargetType {
     var baseURL: URL {
-        let url = URL(string: "https://gateway.marvel.com:443/v1/public")
+        let url = URL(string: "https://gateway.marvel.com/v1/public")
         return url!
     }
     
@@ -42,26 +43,24 @@ extension Network: TargetType {
     }
     
     var task: Moya.Task {
+        let timestamp = "\(Date().timeIntervalSince1970)"
+        let apiPrivateKey = Bundle.main.apiPrivateKey
         let apiPublicKey = Bundle.main.apiPublicKey
-        let param = ["apikey": apiPublicKey]
-        return .requestParameters(parameters: param, encoding: URLEncoding.default)
-//        switch self {
-//        case .characters:
-//            <#code#>
-//        case .comics:
-//            <#code#>
-//        case .series:
-//            <#code#>
-//        case .stories:
-//            <#code#>
-//        case .events:
-//            <#code#>
-//        }
+        let hash = MD5(string: "\(timestamp)\(apiPrivateKey)\(apiPublicKey)")
+        let param = ["ts": timestamp, "apikey": apiPublicKey, "hash": hash]
+        
+        return .requestParameters(parameters: param, encoding: URLEncoding.queryString)
     }
     
     var headers: [String : String]? {
-        return ["Content-type": "application/json"]
+        return ["Content-Type": "application/json"]
     }
     
-    
+    func MD5(string: String) -> String {
+        let digest = Insecure.MD5.hash(data: string.data(using: .utf8) ?? Data())
+
+        return digest.map {
+            String(format: "%02hhx", $0)
+        }.joined()
+    }
 }

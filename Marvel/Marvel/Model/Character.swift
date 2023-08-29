@@ -7,34 +7,34 @@
 
 import Foundation
 
+struct CharacterDataWrapper: Codable {
+    let code: Int?
+    let status: String?
+    let copyright: String?
+    let attributionText: String?
+    let attributionHTML: String?
+    let data: CharacterDataContainer?
+    let etag: String?
+}
+
+struct CharacterDataContainer: Codable {
+    let offset: Int?
+    let limit: Int?
+    let total: Int?
+    let count: Int?
+    let results: [Character]?
+}
+
 struct Character: Codable {
-    let code: Int
-    let status: String
-    let copyright: String
-    let attrivutionText: String
-    let attributionHTML: String
-    let etag: String
-    let data: CharaterData
-}
-
-struct CharaterData: Codable {
-    let offset: Int
-    let limit: Int
-    let total: Int
-    let count: Int
-    let results: [Results]
-}
-
-struct Results: Codable {
-    let id: Int
-    let name: String
-    let description: String
-    let modified: String
-    let thumbnail: Thumbnail
-    let resourceURI: String
-    let comics: CSSE
-    let seires: CSSE
-    let stories: CSSE
-    let events: CSSE
-    let urls: Urls
+    let id: Int?
+    let name: String?
+    let description: String?
+    let modified: String?
+    let resourceURI: String?
+    let urls: [Url]?
+    let thumbnail: Thumbnail?
+    let comics: ComicList?
+    let stories: StoryList?
+    let events: EventList?
+    let series: SeriesList?  
 }
