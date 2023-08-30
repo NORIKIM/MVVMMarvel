@@ -20,6 +20,7 @@ class MainVM {
     var isFirstLoad: Bool {
         return currentPage == -1
     }
+    var isLoading = false
     private let itemsPerPage: Int = 20
     private var currentPage: Int = -1
     var numberOfCharacters: Int {
@@ -47,12 +48,14 @@ class MainVM {
     private func didUpdateCharacterData() {
         if currentPage >= 1 {
             characters.append(contentsOf: characterData?.data?.results ?? [])
+            let dataLoadAt = self.currentPage * self.itemsPerPage
         } else {
             characters = characterData?.data?.results ?? []
         }
     }
     
     func requestCharacter(page: Int) {
+        isLoading = true
         guard self.currentPage != page else {
             return
         }
@@ -61,12 +64,19 @@ class MainVM {
             if isSuccess {
                 self.currentPage = page
                 self.characterData = result as? CharacterDataWrapper
-                self.delegate?.didFinishCharacterLoad()
+                if self.currentPage == 0 {
+                    self.delegate?.didFinishCharacterLoad()
+                }
             }
+            self.isLoading = false
         }
     }
     
     func character(at indexPath: IndexPath) -> Character {
         return characters[indexPath.item]
+    }
+    
+    func loadNextPage() {
+        requestCharacter(page: currentPage + 1)
     }
 }

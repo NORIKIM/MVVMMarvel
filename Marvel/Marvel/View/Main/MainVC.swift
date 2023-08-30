@@ -12,6 +12,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     @IBOutlet weak var characterCV: UICollectionView!
     
     let cellID = "MainCell"
+    var scrollingByUser = false
     lazy var favoriteBTN: UIBarButtonItem = {
         let img = UIImage(named: "favorite")!
         let button = UIBarButtonItem(image: img, style: .done, target: self, action: #selector(moveToFavorite(_:)))
@@ -19,6 +20,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         return button
     }()
     private let viewModel = MainVM()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,4 +94,19 @@ extension MainVC {
             self.characterCV.reloadItems(at: [indexPath])
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollingByUser else { return }
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        if offsetY > (contentHeight - height) {
+            viewModel.loadNextPage()
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+            scrollingByUser = true
+        }
 }
