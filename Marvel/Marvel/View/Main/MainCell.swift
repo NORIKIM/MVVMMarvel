@@ -24,11 +24,11 @@ class MainCell: UICollectionViewCell {
     override func prepareForReuse() {
         characterIMG.image = UIImage(named: "emptyCharacter")
         characterNameLB.text = ""
-        urlLB.text = "url 0"
-        comicLB.text = "comic 0"
-        seriesLB.text = "series 0"
-        storyLB.text = "story 0"
-        eventLB.text = "event 0"
+        urlLB.text = "url "
+        comicLB.text = "comic "
+        seriesLB.text = "series "
+        storyLB.text = "story "
+        eventLB.text = "event "
     }
     
     func loadImage(url: String?) {
