@@ -22,7 +22,7 @@ class MainCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
-        characterIMG.image = UIImage(named: "emptyCharacter")
+        characterIMG.image = nil
         characterNameLB.text = ""
         urlLB.text = "url "
         comicLB.text = "comic "
