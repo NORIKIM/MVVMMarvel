@@ -106,9 +106,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NvC-3b-JRT">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="10" y="59" width="373" height="759"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pOj-TJ-m8z">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="7" minimumInteritemSpacing="3" id="pOj-TJ-m8z">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -129,12 +129,15 @@
                         <viewLayoutGuide key="safeArea" id="utc-8M-fC0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="utc-8M-fC0" firstAttribute="trailing" secondItem="NvC-3b-JRT" secondAttribute="trailing" id="QxA-4d-LxL"/>
-                            <constraint firstItem="NvC-3b-JRT" firstAttribute="leading" secondItem="utc-8M-fC0" secondAttribute="leading" id="dWR-9Q-KvI"/>
+                            <constraint firstItem="utc-8M-fC0" firstAttribute="trailing" secondItem="NvC-3b-JRT" secondAttribute="trailing" constant="10" id="QxA-4d-LxL"/>
+                            <constraint firstItem="NvC-3b-JRT" firstAttribute="leading" secondItem="utc-8M-fC0" secondAttribute="leading" constant="10" id="dWR-9Q-KvI"/>
                             <constraint firstItem="NvC-3b-JRT" firstAttribute="top" secondItem="utc-8M-fC0" secondAttribute="top" id="kFo-XC-DCB"/>
                             <constraint firstItem="utc-8M-fC0" firstAttribute="bottom" secondItem="NvC-3b-JRT" secondAttribute="bottom" id="nBU-L6-u1W"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="characterCV" destination="NvC-3b-JRT" id="hMj-6g-VxU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h86-s7-Xqn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
