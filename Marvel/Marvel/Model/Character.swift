@@ -37,5 +37,4 @@ struct Character: Codable {
     let stories: StoryList?
     let events: EventList?
     let series: SeriesList?
-    let isFavorite: Bool?
 }
