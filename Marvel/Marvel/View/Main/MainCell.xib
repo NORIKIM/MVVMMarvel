@@ -119,6 +119,7 @@
                 <outlet property="characterNameLB" destination="FuS-hO-m6H" id="grv-Xg-zFs"/>
                 <outlet property="comicLB" destination="SdW-TF-ahx" id="Nld-kt-Ted"/>
                 <outlet property="eventLB" destination="jZi-tf-bfi" id="DWp-iS-El3"/>
+                <outlet property="favoriteBTN" destination="EPm-OU-74P" id="KeO-19-EHe"/>
                 <outlet property="seriesLB" destination="zZj-jL-gm8" id="ntm-a7-QxX"/>
                 <outlet property="storyLB" destination="SFf-Fs-VyB" id="emc-7g-CG5"/>
                 <outlet property="urlLB" destination="K5A-1Q-Tlp" id="ioj-CU-xKY"/>

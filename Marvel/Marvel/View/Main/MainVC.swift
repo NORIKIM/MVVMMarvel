@@ -92,10 +92,68 @@ extension MainVC {
         let eventCount = character.events?.items?.count
         cell.eventLB.text! += String(eventCount ?? 0)
         
+        cell.favoriteBTN.addTarget(self, action: #selector(didSelectFavoriteButton(_:)), for: .touchUpInside)
+        cell.favoriteBTN.tag = indexPath.item
+        let favoriteStatusImage = settingFavorite(character: character)
+        cell.favoriteBTN.setImage(favoriteStatusImage, for: .normal)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (self.view.frame.size.width / 2) - 15, height: 305)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //
+    }
+    
+    @objc func didSelectFavoriteButton(_ sender: UIButton) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let character = viewModel.character(at: indexPath)
+        let isFavorite = isFavorited(character)
+        
+        if isFavorite {
+            unfavorite(character)
+        } else {
+            favorite(character)
+        }
+        
+        DispatchQueue.main.async {
+            self.characterCV.reloadItems(at: [indexPath])
+        }
+        
+    }
+    
+    func settingFavorite(character: Character) -> UIImage {
+        let unFavoriteImage = UIImage(named: "emptyFavorite")!
+        let favoriteImage = UIImage(named: "favorite")!
+        let isFavorite = isFavorited(character)
+        
+        if isFavorite == true {
+            return favoriteImage
+        } else {
+            return unFavoriteImage
+        }
+    }
+    
+    func isFavorited(_ character: Character) -> Bool {
+        if let id = character.id {
+           return (UserDefaults.standard.object(forKey: "\(id)") as? Bool) ?? false
+        } else {
+            return false
+        }
+    }
+    
+    func favorite(_ character: Character) {
+        if let id = character.id {
+            UserDefaults.standard.set(true, forKey: "\(id)")
+        }
+    }
+    
+    func unfavorite(_ character: Character) {
+        if let id = character.id {
+            UserDefaults.standard.removeObject(forKey: "\(id)")
+        }
     }
 }

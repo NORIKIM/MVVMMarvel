@@ -15,6 +15,7 @@ class MainCell: UICollectionViewCell {
     @IBOutlet weak var seriesLB: UILabel!
     @IBOutlet weak var storyLB: UILabel!
     @IBOutlet weak var eventLB: UILabel!
+    @IBOutlet weak var favoriteBTN: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
