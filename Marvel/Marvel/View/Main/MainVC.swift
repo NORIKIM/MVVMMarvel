@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate {
     
     @IBOutlet weak var characterCV: UICollectionView!
     
@@ -70,32 +70,10 @@ extension MainVC {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? MainCell else { return UICollectionViewCell() }
         let character = viewModel.character(at: indexPath)
         
-        if let path = character.thumbnail?.path, let extensionString = character.thumbnail?.extensionString {
-            let characterImageURL = "\(path).\(extensionString)"
-            cell.loadImage(url: characterImageURL)
-        }
-
-        cell.characterNameLB.text = character.name
-        
-        let urlCount = character.urls?.count
-        cell.urlLB.text! += String(urlCount ?? 0)
-        
-        let comicCount = character.comics?.items?.count
-        cell.comicLB.text! += String(comicCount ?? 0)
-        
-        let seriesCount = character.series?.items?.count
-        cell.seriesLB.text! += String(seriesCount ?? 0)
-        
-        let storyCount = character.stories?.items?.count
-        cell.storyLB.text! += String(storyCount ?? 0)
-        
-        let eventCount = character.events?.items?.count
-        cell.eventLB.text! += String(eventCount ?? 0)
-        
-        cell.favoriteBTN.addTarget(self, action: #selector(didSelectFavoriteButton(_:)), for: .touchUpInside)
         cell.favoriteBTN.tag = indexPath.item
-        let favoriteStatusImage = settingFavorite(character: character)
-        cell.favoriteBTN.setImage(favoriteStatusImage, for: .normal)
+        cell.character = character
+        cell.delegate = self
+        
         
         return cell
     }
@@ -108,52 +86,10 @@ extension MainVC {
         //
     }
     
-    @objc func didSelectFavoriteButton(_ sender: UIButton) {
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let character = viewModel.character(at: indexPath)
-        let isFavorite = isFavorited(character)
-        
-        if isFavorite {
-            unfavorite(character)
-        } else {
-            favorite(character)
-        }
-        
+    // MainCell delegate method
+    func didFinishSelectFavoriteButton(at indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.characterCV.reloadItems(at: [indexPath])
-        }
-        
-    }
-    
-    func settingFavorite(character: Character) -> UIImage {
-        let unFavoriteImage = UIImage(named: "emptyFavorite")!
-        let favoriteImage = UIImage(named: "favorite")!
-        let isFavorite = isFavorited(character)
-        
-        if isFavorite == true {
-            return favoriteImage
-        } else {
-            return unFavoriteImage
-        }
-    }
-    
-    func isFavorited(_ character: Character) -> Bool {
-        if let id = character.id {
-           return (UserDefaults.standard.object(forKey: "\(id)") as? Bool) ?? false
-        } else {
-            return false
-        }
-    }
-    
-    func favorite(_ character: Character) {
-        if let id = character.id {
-            UserDefaults.standard.set(true, forKey: "\(id)")
-        }
-    }
-    
-    func unfavorite(_ character: Character) {
-        if let id = character.id {
-            UserDefaults.standard.removeObject(forKey: "\(id)")
         }
     }
 }
