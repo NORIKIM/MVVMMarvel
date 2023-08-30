@@ -31,7 +31,7 @@ class MainCell: UICollectionViewCell {
         eventLB.text = "event 0"
     }
     
-    func configure(url: String?) {
+    func loadImage(url: String?) {
         if let urlString = url {
             let urlData = URL(string: urlString)!
             characterIMG.loadImage(from: urlData) { _ in

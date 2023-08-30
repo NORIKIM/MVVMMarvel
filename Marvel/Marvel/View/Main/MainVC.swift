@@ -72,7 +72,7 @@ extension MainVC {
         
         if let path = character.thumbnail?.path, let extensionString = character.thumbnail?.extensionString {
             let characterImageURL = "\(path).\(extensionString)"
-            cell.configure(url: characterImageURL)
+            cell.loadImage(url: characterImageURL)
         }
 
         cell.characterNameLB.text = character.name
