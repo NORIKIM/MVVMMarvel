@@ -7,6 +7,7 @@
 
 import UIKit
 import Toaster
+import Photos
 
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate, Storyboarded {
     
@@ -52,7 +53,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         }
     }
     func showLastPageToast() {
-        Toast(text: "마지막 페이지 입니다.", duration: Delay.short).show()
+        showToast(message: "마지막 페이지 입니다.", duration: Delay.short)
+    }
+    
+    func showToast(message: String, duration: TimeInterval) {
+        Toast(text: message, duration: duration).show()
     }
     
     // 즐겨찾기
@@ -61,9 +66,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     }
     
     // Action Sheet
-    func showActionSheet(_ character: Character) {
+    func showActionSheet(_ character: Character, characterImage: UIImage) {
         let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in self.saveCharacterImage() }))
+        actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in
+            self.saveCharacterImage(characterImage)
+        }))
         actionSheet.addAction(UIAlertAction(title: "wiki", style: .default, handler: { _ in self.openWiki() }))
         actionSheet.addAction(UIAlertAction(title: "더보기 ...", style: .default, handler: { _ in self.moveToCharacterDetailVC() }))
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
@@ -71,8 +78,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func saveCharacterImage() {
-        
+    func saveCharacterImage(_ image: UIImage) {
+        ImageManager().saveImage(image)
     }
     
     func openWiki() {
@@ -107,8 +114,10 @@ extension MainVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! MainCell
         let character = viewModel.character(at: indexPath)
-        showActionSheet(character)
+        
+        showActionSheet(character, characterImage: cell.characterIMG.image!)
     }
     
     // MainCell delegate method
