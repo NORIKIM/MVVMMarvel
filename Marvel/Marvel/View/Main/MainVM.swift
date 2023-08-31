@@ -64,9 +64,7 @@ class MainVM {
             if isSuccess {
                 self.currentPage = page
                 self.characterData = result as? CharacterDataWrapper
-                if self.currentPage == 0 {
-                    self.delegate?.didFinishCharacterLoad()
-                }
+                self.delegate?.didFinishCharacterLoad()
             }
             self.isLoading = false
         }
