@@ -10,22 +10,20 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if let scene = (scene as? UIWindowScene) {
-            let window = UIWindow(windowScene: scene)
+        
+        let navController = UINavigationController()
+        
+        coordinator = MainCoordinator(navi: navController)
+        coordinator?.start()
+        
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = navController
             self.window = window
-            
-            let navi = UINavigationController()
-            
-            window.backgroundColor = .white
-            window.rootViewController = navi
-            
-            let appCoordinator = AppCoordinator(navi: navi)
-            appCoordinator.start()
             window.makeKeyAndVisible()
-            
-            
         }
     }
 
