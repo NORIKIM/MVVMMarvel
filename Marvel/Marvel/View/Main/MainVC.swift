@@ -8,20 +8,14 @@
 import UIKit
 import Toaster
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate, Storyboarded {
     
     @IBOutlet weak var characterCV: UICollectionView!
     
+    weak var coordinator: MainCoordinator?
     let cellID = "MainCell"
     var scrollingByUser = false
-    lazy var favoriteBTN: UIBarButtonItem = {
-        let img = UIImage(named: "favorite")!
-        let button = UIBarButtonItem(image: img, style: .done, target: self, action: #selector(moveToFavorite(_:)))
-        
-        return button
-    }()
     private let viewModel = MainVM()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +29,10 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         
         self.viewModel.reset()
         self.viewModel.reload()
-        
     }
     
     func settingUI() {
+        let favoriteBTN = UIBarButtonItem(image: UIImage(named: "favorite")!, style: .done, target: self, action: #selector(moveToFavoriteVC(_:)))
         self.navigationItem.rightBarButtonItem = favoriteBTN
         self.navigationItem.rightBarButtonItem?.tintColor = .red
         
@@ -57,13 +51,12 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
             self.characterCV.reloadData()
         }
     }
-    
     func showLastPageToast() {
         Toast(text: "마지막 페이지 입니다.", duration: Delay.short).show()
     }
     
-    @objc func moveToFavorite(_ sender: UIBarButtonItem) {
-        
+    @objc func moveToFavoriteVC(_ sender: UIBarButtonItem) {
+        self.coordinator?.moveToFavoriteVC()
     }
 }
 
