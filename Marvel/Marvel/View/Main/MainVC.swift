@@ -68,10 +68,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     // Action Sheet
     func showActionSheet(_ character: Character, characterImage: UIImage) {
         let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in
-            self.saveCharacterImage(characterImage)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "wiki", style: .default, handler: { _ in self.openWiki() }))
+        actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in self.saveCharacterImage(characterImage) }))
+        actionSheet.addAction(UIAlertAction(title: "wiki", style: .default, handler: { _ in self.openWiki(url: character.urls) }))
         actionSheet.addAction(UIAlertAction(title: "더보기 ...", style: .default, handler: { _ in self.moveToCharacterDetailVC() }))
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
@@ -82,8 +80,19 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         ImageManager().saveImage(image)
     }
     
-    func openWiki() {
-        
+    func openWiki(url: [Url]?) {
+        if let characterUrls = url {
+            let wiki = characterUrls.filter { $0.type == "wiki" }.first
+            var link = characterUrls[0].url!
+            
+            if wiki != nil {
+                link = wiki!.url!
+            }
+            
+            if let wikiUrl = URL(string: link), UIApplication.shared.canOpenURL(wikiUrl) {
+                UIApplication.shared.open(wikiUrl)
+            }
+        }
     }
     
     func moveToCharacterDetailVC() {
