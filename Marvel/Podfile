@@ -7,4 +7,5 @@ target 'Marvel' do
 
   # Pods for Marvel
   pod 'Moya'
+  pod 'Toaster'
 end

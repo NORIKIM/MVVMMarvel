@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainVMDelegate: AnyObject {
     func didFinishCharacterLoad()
+    func showLastPageToast()
 }
 
 class MainVM {
@@ -23,6 +24,8 @@ class MainVM {
     var isLoading = false
     private let itemsPerPage: Int = 20
     private var currentPage: Int = -1
+    private var isLastPage = false
+    private var totalCharacter = 0
     var numberOfCharacters: Int {
         return characters.count
     }
@@ -47,23 +50,29 @@ class MainVM {
     
     private func didUpdateCharacterData() {
         if currentPage >= 1 {
-            characters.append(contentsOf: characterData?.data?.results ?? [])
-            let dataLoadAt = self.currentPage * self.itemsPerPage
+            if characters.count == totalCharacter {
+                isLastPage = true
+                delegate?.showLastPageToast()
+            } else {
+                characters.append(contentsOf: characterData?.data?.results ?? [])
+            }
         } else {
             characters = characterData?.data?.results ?? []
         }
     }
     
     func requestCharacter(page: Int) {
-        isLoading = true
-        guard self.currentPage != page else {
+        guard self.currentPage != page && !isLastPage else {
             return
         }
+        isLoading = true
         
         Service.shared.requestCharacter(page: page) { isSuccess, result in
             if isSuccess {
+                guard let result = result as? CharacterDataWrapper else { return }
+                self.totalCharacter = (result.data?.total)!
                 self.currentPage = page
-                self.characterData = result as? CharacterDataWrapper
+                self.characterData = result
                 self.delegate?.didFinishCharacterLoad()
             }
             self.isLoading = false

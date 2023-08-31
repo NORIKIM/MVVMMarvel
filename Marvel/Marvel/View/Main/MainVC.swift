@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toaster
 
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate {
     
@@ -55,6 +56,10 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         DispatchQueue.main.async {
             self.characterCV.reloadData()
         }
+    }
+    
+    func showLastPageToast() {
+        Toast(text: "마지막 페이지 입니다.", duration: Delay.short).show()
     }
     
     @objc func moveToFavorite(_ sender: UIBarButtonItem) {
