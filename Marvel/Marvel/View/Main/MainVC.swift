@@ -101,12 +101,12 @@ extension MainVC {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
         
-        if offsetY > (contentHeight - height) {
+        if offsetY >= (contentHeight - height) {
             viewModel.loadNextPage()
         }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-            scrollingByUser = true
-        }
+        scrollingByUser = true
+    }
 }
