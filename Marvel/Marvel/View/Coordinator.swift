@@ -8,16 +8,9 @@
 import Foundation
 import UIKit
 
-class AppCoordinator {
-    private var navi: UINavigationController!
+protocol Coordinator: AnyObject {
+    var childCoordinators: [Coordinator] { get set }
+    var navi: UINavigationController { get set }
     
-    init(navi: UINavigationController) {
-        self.navi = navi
-    }
-    
-    func start() {
-        let mainVC = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "MainVC") as! MainVC
-        navi.setViewControllers([mainVC], animated: true)
-    }
+    func start()
 }
