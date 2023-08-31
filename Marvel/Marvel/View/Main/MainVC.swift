@@ -45,7 +45,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         characterCV.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
     }
     
-    //viewModel delegate method
+    // viewModel delegate method
     func didFinishCharacterLoad() {
         DispatchQueue.main.async {
             self.characterCV.reloadData()
@@ -55,8 +55,32 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         Toast(text: "마지막 페이지 입니다.", duration: Delay.short).show()
     }
     
+    // 즐겨찾기
     @objc func moveToFavoriteVC(_ sender: UIBarButtonItem) {
         self.coordinator?.moveToFavoriteVC()
+    }
+    
+    // Action Sheet
+    func showActionSheet(_ character: Character) {
+        let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in self.saveCharacterImage() }))
+        actionSheet.addAction(UIAlertAction(title: "wiki", style: .default, handler: { _ in self.openWiki() }))
+        actionSheet.addAction(UIAlertAction(title: "더보기 ...", style: .default, handler: { _ in self.moveToCharacterDetailVC() }))
+        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func saveCharacterImage() {
+        
+    }
+    
+    func openWiki() {
+        
+    }
+    
+    func moveToCharacterDetailVC() {
+        
     }
 }
 
@@ -83,7 +107,8 @@ extension MainVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        let character = viewModel.character(at: indexPath)
+        showActionSheet(character)
     }
     
     // MainCell delegate method
