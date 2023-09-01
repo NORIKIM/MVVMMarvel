@@ -25,6 +25,13 @@
 		25860C202A9E30130025BBE8 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25860C1E2A9E30130025BBE8 /* MainCell.swift */; };
 		25860C212A9E30130025BBE8 /* MainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25860C1F2A9E30130025BBE8 /* MainCell.xib */; };
 		25860C232A9F3EE30025BBE8 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25860C222A9F3EE30025BBE8 /* ImageCacheManager.swift */; };
+		25A7D8792AA0CE1D00DA491E /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A7D8782AA0CE1D00DA491E /* FavoriteVC.swift */; };
+		25C670552AA0E0390016970C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C670542AA0E0390016970C /* MainCoordinator.swift */; };
+		25C6705B2AA102680016970C /* Extension+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6705A2AA102680016970C /* Extension+Storyboard.swift */; };
+		25C6705D2AA11E890016970C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6705C2AA11E890016970C /* Extension+UIView.swift */; };
+		25C6705F2AA11EC30016970C /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6705E2AA11EC30016970C /* ImageManager.swift */; };
+		25C670612AA1B4BE0016970C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C670602AA1B4BE0016970C /* UserDefaultsManager.swift */; };
+		25C670652AA1DD920016970C /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C670642AA1DD920016970C /* Extension+Notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +54,13 @@
 		25860C1E2A9E30130025BBE8 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		25860C1F2A9E30130025BBE8 /* MainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
 		25860C222A9F3EE30025BBE8 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		25A7D8782AA0CE1D00DA491E /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		25C670542AA0E0390016970C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		25C6705A2AA102680016970C /* Extension+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Storyboard.swift"; sourceTree = "<group>"; };
+		25C6705C2AA11E890016970C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		25C6705E2AA11EC30016970C /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		25C670602AA1B4BE0016970C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		25C670642AA1DD920016970C /* Extension+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Notification.swift"; sourceTree = "<group>"; };
 		B0EA2D8D3D3412D1AF92092A /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
 		D6D801F8F9D8B31BA85EE416 /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD722DFFB6E99990FA52266F /* Pods-Marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.release.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,7 +119,6 @@
 			children = (
 				252177B82A9C783200B433D2 /* Character.swift */,
 				252177BA2A9C7A1F00B433D2 /* CharacterResult.swift */,
-				25860C222A9F3EE30025BBE8 /* ImageCacheManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,6 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				252177C42A9CC81E00B433D2 /* Extension+Bundle.swift */,
+				25C6705A2AA102680016970C /* Extension+Storyboard.swift */,
+				25C6705C2AA11E890016970C /* Extension+UIView.swift */,
+				25C670642AA1DD920016970C /* Extension+Notification.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -131,7 +147,12 @@
 			isa = PBXGroup;
 			children = (
 				25860C192A9DD3C80025BBE8 /* Coordinator.swift */,
+				25C670542AA0E0390016970C /* MainCoordinator.swift */,
+				25C6705E2AA11EC30016970C /* ImageManager.swift */,
+				25860C222A9F3EE30025BBE8 /* ImageCacheManager.swift */,
+				25C670602AA1B4BE0016970C /* UserDefaultsManager.swift */,
 				25860C1D2A9E2FEC0025BBE8 /* Main */,
+				25A7D8772AA0CDF500DA491E /* Favorite */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +166,14 @@
 				25860C1F2A9E30130025BBE8 /* MainCell.xib */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		25A7D8772AA0CDF500DA491E /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				25A7D8782AA0CE1D00DA491E /* FavoriteVC.swift */,
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		A4FDE4D7B2E480069642C4D9 /* Frameworks */ = {
@@ -282,14 +311,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				252177A82A9A17B200B433D2 /* MainVC.swift in Sources */,
+				25C6705F2AA11EC30016970C /* ImageManager.swift in Sources */,
+				25C670652AA1DD920016970C /* Extension+Notification.swift in Sources */,
+				25C670552AA0E0390016970C /* MainCoordinator.swift in Sources */,
+				25C6705D2AA11E890016970C /* Extension+UIView.swift in Sources */,
 				25860C1C2A9DD6820025BBE8 /* MainVM.swift in Sources */,
 				252177BB2A9C7A1F00B433D2 /* CharacterResult.swift in Sources */,
+				25C6705B2AA102680016970C /* Extension+Storyboard.swift in Sources */,
 				252177BE2A9C7D1D00B433D2 /* Network.swift in Sources */,
 				252177C52A9CC81E00B433D2 /* Extension+Bundle.swift in Sources */,
 				25860C202A9E30130025BBE8 /* MainCell.swift in Sources */,
 				252177A42A9A17B200B433D2 /* AppDelegate.swift in Sources */,
 				252177C02A9CA18000B433D2 /* Service.swift in Sources */,
 				25860C232A9F3EE30025BBE8 /* ImageCacheManager.swift in Sources */,
+				25A7D8792AA0CE1D00DA491E /* FavoriteVC.swift in Sources */,
+				25C670612AA1B4BE0016970C /* UserDefaultsManager.swift in Sources */,
 				252177A62A9A17B200B433D2 /* SceneDelegate.swift in Sources */,
 				252177B92A9C783200B433D2 /* Character.swift in Sources */,
 				25860C1A2A9DD3C80025BBE8 /* Coordinator.swift in Sources */,
