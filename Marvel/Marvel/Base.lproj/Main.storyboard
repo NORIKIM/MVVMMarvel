@@ -158,10 +158,10 @@
             </objects>
             <point key="canvasLocation" x="102" y="-315"/>
         </scene>
-        <!--View Controller-->
+        <!--Character Detail ListVC-->
         <scene sceneID="xbm-Mq-o18">
             <objects>
-                <viewController id="RoG-hG-YUG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterDetailListVC" id="RoG-hG-YUG" customClass="CharacterDetailListVC" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YZ2-GX-S1V">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

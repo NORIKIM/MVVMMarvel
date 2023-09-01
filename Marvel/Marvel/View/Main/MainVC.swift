@@ -97,7 +97,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     }
     
     func moveToCharacterDetailVC() {
-        
+        coordinator?.moveToCharacterDetailListVC()
     }
 }
 
