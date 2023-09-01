@@ -16,9 +16,15 @@ class MainCoordinator: NSObject, Coordinator {
     }
     
     func start() {
+        let introVC = IntroVC.instantiate()
+        introVC.coordinator = self
+        navi.setViewControllers([introVC], animated: true)
+    }
+    
+    func moveToMainVC() {
         let mainVC = MainVC.instantiate()
         mainVC.coordinator = self
-        navi.pushViewController(mainVC, animated: true)
+        navi.setViewControllers([mainVC], animated: true)
     }
     
     func moveToFavoriteVC() {

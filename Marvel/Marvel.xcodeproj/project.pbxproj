@@ -32,6 +32,8 @@
 		25C6705F2AA11EC30016970C /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6705E2AA11EC30016970C /* ImageManager.swift */; };
 		25C670612AA1B4BE0016970C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C670602AA1B4BE0016970C /* UserDefaultsManager.swift */; };
 		25C670652AA1DD920016970C /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C670642AA1DD920016970C /* Extension+Notification.swift */; };
+		25C670682AA1ED440016970C /* IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C670672AA1ED440016970C /* IntroVC.swift */; };
+		25C6706A2AA1F2E50016970C /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 25C670692AA1F0570016970C /* intro.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		25C6705E2AA11EC30016970C /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		25C670602AA1B4BE0016970C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		25C670642AA1DD920016970C /* Extension+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Notification.swift"; sourceTree = "<group>"; };
+		25C670672AA1ED440016970C /* IntroVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroVC.swift; sourceTree = "<group>"; };
+		25C670692AA1F0570016970C /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
 		B0EA2D8D3D3412D1AF92092A /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
 		D6D801F8F9D8B31BA85EE416 /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD722DFFB6E99990FA52266F /* Pods-Marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.release.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				252177AE2A9A17B500B433D2 /* LaunchScreen.storyboard */,
 				252177B12A9A17B500B433D2 /* Info.plist */,
 				252177C12A9CC71E00B433D2 /* NetworkInfo.plist */,
+				25C670692AA1F0570016970C /* intro.mp4 */,
 				25860C162A9DD0B90025BBE8 /* View */,
 				252177C32A9CC7E900B433D2 /* Extension */,
 				252177BC2A9C7D0D00B433D2 /* Network */,
@@ -151,6 +156,7 @@
 				25C6705E2AA11EC30016970C /* ImageManager.swift */,
 				25860C222A9F3EE30025BBE8 /* ImageCacheManager.swift */,
 				25C670602AA1B4BE0016970C /* UserDefaultsManager.swift */,
+				25C670662AA1ED300016970C /* Intro */,
 				25860C1D2A9E2FEC0025BBE8 /* Main */,
 				25A7D8772AA0CDF500DA491E /* Favorite */,
 			);
@@ -174,6 +180,14 @@
 				25A7D8782AA0CE1D00DA491E /* FavoriteVC.swift */,
 			);
 			path = Favorite;
+			sourceTree = "<group>";
+		};
+		25C670662AA1ED300016970C /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				25C670672AA1ED440016970C /* IntroVC.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		A4FDE4D7B2E480069642C4D9 /* Frameworks */ = {
@@ -253,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C6706A2AA1F2E50016970C /* intro.mp4 in Resources */,
 				252177B02A9A17B500B433D2 /* LaunchScreen.storyboard in Resources */,
 				252177C22A9CC71E00B433D2 /* NetworkInfo.plist in Resources */,
 				252177AD2A9A17B500B433D2 /* Assets.xcassets in Resources */,
@@ -315,6 +330,7 @@
 				25C670652AA1DD920016970C /* Extension+Notification.swift in Sources */,
 				25C670552AA0E0390016970C /* MainCoordinator.swift in Sources */,
 				25C6705D2AA11E890016970C /* Extension+UIView.swift in Sources */,
+				25C670682AA1ED440016970C /* IntroVC.swift in Sources */,
 				25860C1C2A9DD6820025BBE8 /* MainVM.swift in Sources */,
 				252177BB2A9C7A1F00B433D2 /* CharacterResult.swift in Sources */,
 				25C6705B2AA102680016970C /* Extension+Storyboard.swift in Sources */,

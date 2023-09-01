@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K48-9d-fnf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hg7-55-rYC">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,6 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--IntroVC-->
+        <scene sceneID="EsM-14-mts">
+            <objects>
+                <viewController storyboardIdentifier="IntroVC" id="hg7-55-rYC" customClass="IntroVC" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KeP-fd-vRt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Og6-LO-R2u">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QLu-b0-nQA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Og6-LO-R2u" firstAttribute="leading" secondItem="QLu-b0-nQA" secondAttribute="leading" id="cvA-D1-Cby"/>
+                            <constraint firstItem="QLu-b0-nQA" firstAttribute="trailing" secondItem="Og6-LO-R2u" secondAttribute="trailing" id="fdn-ue-CsV"/>
+                            <constraint firstItem="Og6-LO-R2u" firstAttribute="top" secondItem="KeP-fd-vRt" secondAttribute="top" id="jnW-zs-lgS"/>
+                            <constraint firstAttribute="bottom" secondItem="Og6-LO-R2u" secondAttribute="bottom" id="kTJ-rI-cpM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="videoView" destination="Og6-LO-R2u" id="nm4-mr-XpP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hjb-OS-hq1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1352" y="30"/>
+        </scene>
         <!--MainVC-->
         <scene sceneID="ZpD-wy-9zd">
             <objects>
@@ -38,6 +68,10 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="n3W-9W-mju">
+                                <rect key="frame" x="186" y="416" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="utc-8M-fC0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,6 +84,7 @@
                     </view>
                     <connections>
                         <outlet property="characterCV" destination="NvC-3b-JRT" id="hMj-6g-VxU"/>
+                        <outlet property="indicator" destination="n3W-9W-mju" id="3iq-ib-nru"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h86-s7-Xqn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
