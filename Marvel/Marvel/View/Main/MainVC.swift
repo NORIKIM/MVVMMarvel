@@ -69,10 +69,30 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     // Action Sheet
     func showActionSheet(_ character: Character, characterImage: UIImage) {
         let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in self.saveCharacterImage(characterImage) }))
+        
+        // 이미지 저장
+        let thumbnail = character.thumbnail?.path!
+        if thumbnail!.contains("image_not_available") == false {
+            actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in self.saveCharacterImage(characterImage) }))
+        }
+        
+        // wiki
         actionSheet.addAction(UIAlertAction(title: "wiki", style: .default, handler: { _ in self.openWiki(url: character.urls) }))
-        actionSheet.addAction(UIAlertAction(title: "더보기 ...", style: .default, handler: { _ in self.moveToCharacterDetailVC() }))
+        
+        // 더보기
+        let comicCount = character.comics?.returned
+        let seiesCount = character.series?.returned
+        let storyCount = character.stories?.returned
+        let eventCount = character.events?.returned
+        let sum = comicCount! + seiesCount! + storyCount! + eventCount!
+        
+        if sum > 0 {
+            actionSheet.addAction(UIAlertAction(title: "더보기 ...", style: .default, handler: { _ in self.moveToCharacterDetailVC(character) }))
+        }
+        
+        // 취소
         actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
         
         self.present(actionSheet, animated: true, completion: nil)
     }
@@ -96,8 +116,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         }
     }
     
-    func moveToCharacterDetailVC() {
-        coordinator?.moveToCharacterDetailListVC()
+    func moveToCharacterDetailVC(_ character: Character) {
+        coordinator?.moveToCharacterDetailListVC(character)
     }
 }
 
