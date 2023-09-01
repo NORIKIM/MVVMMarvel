@@ -23,7 +23,7 @@ class ImageManager: NSObject {
     }
     
     @objc func didFinishSaveImage(_ image: UIImage, saveError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
+        if let _ = error {
             let hasAuthorizeAccessPhotoAlbum = hasAuthorizeAccessPhotoAlbum()
             if hasAuthorizeAccessPhotoAlbum {
                 showToast(message: "사진 저장에 실패하였습니다. 앨범 접근 권한을 허용해주세요.", duration: Delay.long)
@@ -38,7 +38,7 @@ class ImageManager: NSObject {
     }
     
     func hasAuthorizeAccessPhotoAlbum() -> Bool {
-        var status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
+        let status = PHPhotoLibrary.authorizationStatus(for: .addOnly)
         return status == .denied
     }
 }

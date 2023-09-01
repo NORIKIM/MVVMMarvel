@@ -27,9 +27,7 @@ class ImageCacheManager: UIImageView {
                 return
             }
             
-            guard let data = data else {
-                return
-            }
+            guard let data = data else { return }
             
             DispatchQueue.main.async {
                 if let downloadedImage = UIImage(data: data) {

@@ -111,7 +111,6 @@ extension MainVC {
         cell.character = character
         cell.delegate = self
         
-        
         return cell
     }
     
@@ -132,6 +131,7 @@ extension MainVC {
             self.characterCV.reloadItems(at: [indexPath])
         }
     }
+    // 즐겨찾기 화면에서 즐겨찾기 해제 후 호출
     @objc func didiUnFavoriteFromFavoriteVC(_ noti: Notification) {
         guard let id = noti.userInfo?[NotificationKey.favorite] as? Int else { return }
         if let indexPath = viewModel.character(at: id) {

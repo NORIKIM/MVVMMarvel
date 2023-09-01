@@ -67,8 +67,6 @@ extension FavoriteVC {
     func didFinishSelectFavoriteButton(at indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.characterCV.reloadData()
-//            self.characterCV.deleteItems(at: [indexPath])
-//            self.character.remove(at: indexPath.item)
             self.listView()
         }
     }
