@@ -83,6 +83,14 @@ class MainVM {
         return characters[indexPath.item]
     }
     
+    func character(at id: Int) -> IndexPath? {
+        if let index = characters.firstIndex(where: { $0.id == id }) {
+            let indexPath = IndexPath(item: index, section: 0)
+            return indexPath
+        }
+        return nil
+    }
+    
     func loadNextPage() {
         requestCharacter(page: currentPage + 1)
     }
