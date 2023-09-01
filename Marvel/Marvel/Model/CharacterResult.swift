@@ -17,58 +17,20 @@ struct Thumbnail: Codable {
     let extensionString: String?
 }
 
-
-struct ComicList: Codable {
+// comicList, seriesList, storyList, eventList
+struct CSSEList: Codable {
     let available: Int?
     let returned: Int?
     let collectionURI: String?
-    let items: [ComicSummary]?
+    let items: [CSSESummary]?
 }
-struct ComicSummary: Codable {
-    let resourceURI: String?
-    let name: String
-}
-
-struct SeriesList: Codable {
-    let available: Int?
-    let returned: Int?
-    let collectionURI: String?
-    let items: [SeriesSummary]?
-}
-struct SeriesSummary: Codable {
+struct CSSESummary: Codable {
     let resourceURI: String?
     let name: String
     let type: String?
 }
-
-
-struct StoryList: Codable {
-    let available: Int?
-    let returned: Int?
-    let collectionURI: String?
-    let items: [StorySummary]?
-}
-struct StorySummary: Codable {
-    let resourceURI: String?
-    let name: String
-    let type: String?
-}
-
-struct EventList: Codable {
-    let available: Int?
-    let returned: Int?
-    let collectionURI: String?
-    let items: [EventSummary]?
-}
-struct EventSummary: Codable {
-    let resourceURI: String?
-    let name: String
-    let type: String?
-}
-
 
 struct Url: Codable {
     let type: String?
     let url: String?
 }
-

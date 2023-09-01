@@ -33,8 +33,8 @@ struct Character: Codable {
     let resourceURI: String?
     let urls: [Url]?
     let thumbnail: Thumbnail?
-    let comics: ComicList?
-    let stories: StoryList?
-    let events: EventList?
-    let series: SeriesList?
+    let comics: CSSEList?
+    let stories: CSSEList?
+    let events: CSSEList?
+    let series: CSSEList?
 }
