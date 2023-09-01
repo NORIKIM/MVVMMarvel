@@ -123,12 +123,33 @@ class MainCell: UICollectionViewCell {
     func favorite(_ character: Character) {
         if let id = character.id {
             UserDefaults.standard.set(true, forKey: "\(id)")
+            appendFavoriteToList(character)
         }
     }
     
     func unfavorite(_ character: Character) {
         if let id = character.id {
             UserDefaults.standard.removeObject(forKey: "\(id)")
+            removeFavoriteFromList(character)
+            NotificationCenter.default.post(name: Notification.Name.favorite, object: nil, userInfo: [NotificationKey.favorite: id])
         }
+    }
+    
+    func appendFavoriteToList(_ character: Character) {
+        var favoriteList = UserDefaultsManager.favoriteList
+        
+        if favoriteList == nil {
+            UserDefaultsManager.favoriteList = [character]
+        } else {
+            favoriteList?.append(character)
+            UserDefaultsManager.favoriteList = favoriteList
+        }
+    }
+    
+    func removeFavoriteFromList(_ character: Character) {
+        var favoriteList = UserDefaultsManager.favoriteList!
+        let index = favoriteList.firstIndex(where: { $0.id == character.id })
+        favoriteList.remove(at: Int(index!))
+        UserDefaultsManager.favoriteList = favoriteList
     }
 }

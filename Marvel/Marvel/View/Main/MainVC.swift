@@ -21,26 +21,23 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        settingUI()
-        settingCollection()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        setUI()
+        setCollection()
         self.viewModel.reset()
         self.viewModel.reload()
     }
     
-    func settingUI() {
+    func setUI() {
         let favoriteBTN = UIBarButtonItem(image: UIImage(named: "favorite")!, style: .done, target: self, action: #selector(moveToFavoriteVC(_:)))
         self.navigationItem.rightBarButtonItem = favoriteBTN
         self.navigationItem.rightBarButtonItem?.tintColor = .red
         
         viewModel.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didiUnFavoriteFromFavoriteVC(_:)), name: Notification.Name.favorite, object: nil)
     }
     
-    func settingCollection() {
+    func setCollection() {
         characterCV.delegate = self
         characterCV.dataSource = self
         characterCV.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
@@ -133,6 +130,14 @@ extension MainVC {
     func didFinishSelectFavoriteButton(at indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.characterCV.reloadItems(at: [indexPath])
+        }
+    }
+    @objc func didiUnFavoriteFromFavoriteVC(_ noti: Notification) {
+        guard let id = noti.userInfo?[NotificationKey.favorite] as? Int else { return }
+        if let indexPath = viewModel.character(at: id) {
+            DispatchQueue.main.async {
+                self.characterCV.reloadItems(at: [indexPath])
+            }
         }
     }
     
