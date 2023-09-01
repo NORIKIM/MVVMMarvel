@@ -33,9 +33,10 @@ class MainCoordinator: NSObject, Coordinator {
         navi.pushViewController(favoriteVC, animated: true)
     }
     
-    func moveToCharacterDetailListVC() {
+    func moveToCharacterDetailListVC(_ character: Character) {
         let characterDetailListVC = CharacterDetailListVC.instantiate()
         characterDetailListVC.coordinator = self
+        characterDetailListVC.character = character
         navi.pushViewController(characterDetailListVC, animated: true)
     }
 }

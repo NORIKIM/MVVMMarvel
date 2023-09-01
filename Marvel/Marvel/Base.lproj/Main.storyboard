@@ -166,31 +166,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이외 데이터 화면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrg-Hf-OMh">
-                                <rect key="frame" x="164" y="79" width="112" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이외 데이터들을 표시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSP-f9-YpX">
-                                <rect key="frame" x="38" y="121" width="142" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="아이템 선택시 아이템 뷰컨으로 이동" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-XS-mPl">
-                                <rect key="frame" x="38" y="228" width="238" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UaJ-TK-9vB">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zZx-zH-7yP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zZx-zH-7yP" firstAttribute="bottom" secondItem="UaJ-TK-9vB" secondAttribute="bottom" id="40P-cT-oQy"/>
+                            <constraint firstItem="UaJ-TK-9vB" firstAttribute="leading" secondItem="zZx-zH-7yP" secondAttribute="leading" id="F9L-EN-uqj"/>
+                            <constraint firstItem="UaJ-TK-9vB" firstAttribute="top" secondItem="zZx-zH-7yP" secondAttribute="top" id="ZOF-vb-XRF"/>
+                            <constraint firstItem="zZx-zH-7yP" firstAttribute="trailing" secondItem="UaJ-TK-9vB" secondAttribute="trailing" id="e3B-H7-soN"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="detailTB" destination="UaJ-TK-9vB" id="0Vl-ol-Yof"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="taq-cE-RYF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
