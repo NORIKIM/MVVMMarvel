@@ -12,6 +12,7 @@ import Photos
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate, Storyboarded {
     
     @IBOutlet weak var characterCV: UICollectionView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     weak var coordinator: MainCoordinator?
     let cellID = "MainCell"
@@ -28,6 +29,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     }
     
     func setUI() {
+        indicator.startAnimating()
+        
         let favoriteBTN = UIBarButtonItem(image: UIImage(named: "favorite")!, style: .done, target: self, action: #selector(moveToFavoriteVC(_:)))
         self.navigationItem.rightBarButtonItem = favoriteBTN
         self.navigationItem.rightBarButtonItem?.tintColor = .red
@@ -47,6 +50,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     func didFinishCharacterLoad() {
         DispatchQueue.main.async {
             self.characterCV.reloadData()
+            self.indicator.stopAnimating()
         }
     }
     func showLastPageToast() {
