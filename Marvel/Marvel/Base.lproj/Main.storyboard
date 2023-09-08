@@ -68,18 +68,19 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="n3W-9W-mju">
-                                <rect key="frame" x="186" y="416" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="n3W-9W-mju">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="utc-8M-fC0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="utc-8M-fC0" firstAttribute="trailing" secondItem="NvC-3b-JRT" secondAttribute="trailing" constant="10" id="QxA-4d-LxL"/>
+                            <constraint firstItem="n3W-9W-mju" firstAttribute="centerY" secondItem="4F5-Oh-ubE" secondAttribute="centerY" id="UPJ-WZ-UYE"/>
                             <constraint firstItem="NvC-3b-JRT" firstAttribute="leading" secondItem="utc-8M-fC0" secondAttribute="leading" constant="10" id="dWR-9Q-KvI"/>
                             <constraint firstItem="NvC-3b-JRT" firstAttribute="top" secondItem="utc-8M-fC0" secondAttribute="top" id="kFo-XC-DCB"/>
                             <constraint firstItem="utc-8M-fC0" firstAttribute="bottom" secondItem="NvC-3b-JRT" secondAttribute="bottom" id="nBU-L6-u1W"/>
+                            <constraint firstItem="n3W-9W-mju" firstAttribute="centerX" secondItem="4F5-Oh-ubE" secondAttribute="centerX" id="o2e-gv-2R7"/>
                         </constraints>
                     </view>
                     <connections>
