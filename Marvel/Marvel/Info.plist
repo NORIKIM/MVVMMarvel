@@ -8,6 +8,11 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>marvel.com</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<string>YES</string>
+			</dict>
 			<key>i.annihil.us</key>
 			<dict>
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
