@@ -24,7 +24,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         
         setUI()
         setCollection()
-        self.viewModel.reset()
         self.viewModel.reload()
     }
     
