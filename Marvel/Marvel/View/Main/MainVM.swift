@@ -29,6 +29,16 @@ class MainVM {
     var numberOfCharacters: Int {
         return characters.count
     }
+        
+    func reload() {
+        reset()
+        loadCharacters()
+    }
+    
+    private func reset() {
+        currentPage = -1
+        characterData = nil
+    }
     
     func loadCharacters() {
         guard isFirstLoad else {
@@ -36,16 +46,6 @@ class MainVM {
         }
         
         requestCharacter(page: 0)
-    }
-    
-    func reload() {
-        reset()
-        loadCharacters()
-    }
-    
-    func reset() {
-        currentPage = -1
-        characterData = nil
     }
     
     private func didUpdateCharacterData() {
@@ -62,12 +62,16 @@ class MainVM {
     }
     
     func requestCharacter(page: Int) {
-        guard self.currentPage != page && !isLastPage else {
+        if !canLoadPage(page: page) {
             return
         }
+        
+        if isLoading { return }
+        
         isLoading = true
         
         Service.shared.requestCharacter(page: page) { isSuccess, result in
+            print(page)
             if isSuccess {
                 guard let result = result as? CharacterDataWrapper else { return }
                 self.totalCharacter = (result.data?.total)!
@@ -77,6 +81,10 @@ class MainVM {
             }
             self.isLoading = false
         }
+    }
+    
+    func canLoadPage(page: Int) -> Bool {
+        return self.currentPage != page && !isLastPage
     }
     
     func character(at indexPath: IndexPath) -> Character {
