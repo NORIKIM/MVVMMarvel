@@ -16,11 +16,11 @@ class IntroVC: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setVideo()
+        playIntroVideo()
         moveToMainVC()
     }
 
-    func setVideo() {
+    func playIntroVideo() {
         if let filePath:String = Bundle.main.path(forResource: "intro", ofType: "mp4") {
             let url = NSURL(fileURLWithPath: filePath)
             let player = AVPlayer(url: url as URL)
