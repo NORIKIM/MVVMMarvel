@@ -25,10 +25,10 @@ class FavoriteVC: UIViewController, Storyboarded, UICollectionViewDelegate, UICo
     }
 
     func listView() {
-        let favoriteList = UserDefaultsManager.favoriteList
+        guard let favoriteList = UserDefaultsManager.favoriteList else { return }
         
-        if  favoriteList?.count != 0 {
-            character = favoriteList!
+        if  favoriteList.count != 0 {
+            character = favoriteList
             noListView.isHidden = true
         } else {
             noListView.isHidden = false
