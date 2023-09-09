@@ -67,7 +67,9 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     }
     
     // Action Sheet
-    func showActionSheet(_ character: Character, characterImage: UIImage) {
+    func showActionSheet(_ character: Character, characterImage: UIImage?) {
+        guard let characterImage = characterImage else { return }
+        
         let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
         
         // 이미지 저장
@@ -146,7 +148,7 @@ extension MainVC {
         let cell = collectionView.cellForItem(at: indexPath) as! MainCell
         let character = viewModel.character(at: indexPath)
         
-        showActionSheet(character, characterImage: cell.characterIMG.image!)
+        showActionSheet(character, characterImage: cell.characterIMG.image)
     }
     
     // MainCell delegate method
