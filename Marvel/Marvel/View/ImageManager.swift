@@ -26,11 +26,24 @@ class ImageManager: NSObject {
         if let _ = error {
             let hasAuthorizeAccessPhotoAlbum = hasAuthorizeAccessPhotoAlbum()
             if hasAuthorizeAccessPhotoAlbum {
-                showToast(message: "사진 저장에 실패하였습니다. 앨범 접근 권한을 허용해주세요.", duration: Delay.long)
+                self.authRequest()
             }
         } else {
             showToast(message: "사진을 앨범에 저장하였습니다.", duration: Delay.short)
         }
+    }
+    
+    func authRequest() {
+        let alert = UIAlertController(title: "사진첩 권한 요청", message: "사진첩 권한을 허용해야 이미지를 저장할 수 있습니다.", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인", style: .default) { action in
+            if let setting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(setting, options: [:], completionHandler: nil)
+            }
+        }
+        
+        alert.addAction(confirm)
+        
+        viewController!.present(alert, animated: true)
     }
     
     func showToast(message: String, duration: TimeInterval) {

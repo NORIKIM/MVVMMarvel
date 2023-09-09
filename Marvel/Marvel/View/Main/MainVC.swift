@@ -98,9 +98,9 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     }
     
     func saveCharacterImage(_ image: UIImage) {
-        ImageManager().saveImage(image)
+        ImageManager().saveImage(image, target: self)
     }
-    
+
     func openWiki(url: [Url]?) {
         if let characterUrls = url {
             let wiki = characterUrls.filter { $0.type == "wiki" }.first
