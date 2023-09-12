@@ -8,8 +8,9 @@
 import UIKit
 import Toaster
 import Photos
+import Combine
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainVMDelegate, MainCellDelegate, Storyboarded {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainCellDelegate, Storyboarded {
     
     @IBOutlet weak var characterCV: UICollectionView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
@@ -18,13 +19,20 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     let cellID = "MainCell"
     var scrollingByUser = false
     private let viewModel = MainVM()
+    private var cancellables: Set<AnyCancellable> = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setCollection()
-        self.viewModel.reload()
+        viewModel.reload()
+        viewModel.characters
+               .sink { [unowned self] _ in
+                   self.characterCV.reloadData()
+                   self.indicator.stopAnimating()
+               }
+               .store(in: &cancellables)
     }
     
     func setUI() {
@@ -33,9 +41,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         let favoriteBTN = UIBarButtonItem(image: UIImage(named: "favorite")!, style: .done, target: self, action: #selector(moveToFavoriteVC(_:)))
         self.navigationItem.rightBarButtonItem = favoriteBTN
         self.navigationItem.rightBarButtonItem?.tintColor = .red
-        
-        viewModel.delegate = self
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(didiUnFavoriteFromFavoriteVC(_:)), name: Notification.Name.favorite, object: nil)
     }
     
@@ -45,13 +51,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         characterCV.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
     }
     
-    // viewModel delegate method
-    func didFinishCharacterLoad() {
-        DispatchQueue.main.async {
-            self.characterCV.reloadData()
-            self.indicator.stopAnimating()
-        }
-    }
     func showLastPageToast() {
         showToast(message: "마지막 페이지 입니다.", duration: Delay.short)
     }
@@ -125,7 +124,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
 // MARK: - collection
 extension MainVC {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfCharacters
+        return viewModel.characters.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

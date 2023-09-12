@@ -7,8 +7,9 @@
 
 import Foundation
 import Moya
+import Combine
 
-struct Service {
+/*struct Service {
     static let shared = Service()
     private let provider = MoyaProvider<Network>()
     typealias callback = (_ isSuccess: Bool, _ result: Any?) -> ()
@@ -29,6 +30,31 @@ struct Service {
                 print(error.localizedDescription)
                 completion(false, nil)
             }
+        }
+        
+    }
+}*/
+
+class Service {
+    static let shared = Service()
+    private let provider = MoyaProvider<Network>()
+    private var subsription = Set<AnyCancellable>()
+    
+    func requestCharacter(page: Int) -> Future<CharacterDataWrapper, Error> {
+        return Future<CharacterDataWrapper, Error> { promise in
+            self.provider.requestPublisher(.characters(page: page))
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        promise(.failure(error))
+                    case .finished:
+                        print("request finished")
+                    }
+                }, receiveValue: { result in
+                    guard let character = try? result.map(CharacterDataWrapper.self) else { return }
+                    promise(.success(character))
+                }).store(in: &self.subsription)
         }
         
     }

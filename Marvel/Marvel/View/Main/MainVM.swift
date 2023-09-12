@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol MainVMDelegate: AnyObject {
     func didFinishCharacterLoad()
@@ -14,10 +15,9 @@ protocol MainVMDelegate: AnyObject {
 
 class MainVM {
     weak var delegate: MainVMDelegate?
-    private var characters = [Character]()
-    private var characterData: CharacterDataWrapper? {
-        didSet { self.didUpdateCharacterData() }
-    }
+    private var cancellables = Set<AnyCancellable>()
+    private var characterData = PassthroughSubject<CharacterDataWrapper?, Never>()
+    var characters = CurrentValueSubject<[Character], Never>([Character]())
     var isFirstLoad: Bool {
         return currentPage == -1
     }
@@ -26,9 +26,6 @@ class MainVM {
     private var currentPage: Int = -1
     private var isLastPage = false
     private var totalCharacter = 0
-    var numberOfCharacters: Int {
-        return characters.count
-    }
         
     func reload() {
         reset()
@@ -37,7 +34,8 @@ class MainVM {
     
     private func reset() {
         currentPage = -1
-        characterData = nil
+        characterData.send(nil)
+//        characterData = nil
     }
     
     func loadCharacters() {
@@ -50,14 +48,23 @@ class MainVM {
     
     private func didUpdateCharacterData() {
         if currentPage >= 1 {
-            if characters.count == totalCharacter {
+            if characters.value.count == totalCharacter {
                 isLastPage = true
                 delegate?.showLastPageToast()
             } else {
-                characters.append(contentsOf: characterData?.data?.results ?? [])
+                characterData.sink { data in
+                    let results = data?.data?.results
+                    self.characters.value.append(contentsOf: results ?? [])
+//                    self.characters.send(results ?? [])
+//                    self.characters.append(contentsOf: results ?? [])
+                }.store(in: &cancellables)
             }
         } else {
-            characters = characterData?.data?.results ?? []
+            characterData.sink { data in
+                let results = data?.data?.results
+                self.characters.send(results ?? [])
+//                self.characters.append(contentsOf: results ?? [])
+            }.store(in: &cancellables)
         }
     }
     
@@ -69,18 +76,23 @@ class MainVM {
         if isLoading { return }
         
         isLoading = true
-        
-        Service.shared.requestCharacter(page: page) { isSuccess, result in
-            print(page)
-            if isSuccess {
-                guard let result = result as? CharacterDataWrapper else { return }
-                self.totalCharacter = (result.data?.total)!
-                self.currentPage = page
-                self.characterData = result
-                self.delegate?.didFinishCharacterLoad()
+    
+        Service.shared.requestCharacter(page: page)
+            .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                print("api Finished")
+            case .failure(let err):
+                print("Error is \(err.localizedDescription)")
             }
-            self.isLoading = false
-        }
+        }, receiveValue: { data in
+            self.totalCharacter = (data.data?.total)!
+            self.currentPage = page
+            self.characterData.send(data)
+        }).store(in: &cancellables)
+        
+        self.didUpdateCharacterData()
+        isLoading = false
     }
     
     func canLoadPage(page: Int) -> Bool {
@@ -88,11 +100,11 @@ class MainVM {
     }
     
     func character(at indexPath: IndexPath) -> Character {
-        return characters[indexPath.item]
+        return characters.value[indexPath.item]
     }
     
     func character(at id: Int) -> IndexPath? {
-        if let index = characters.firstIndex(where: { $0.id == id }) {
+        if let index = characters.value.firstIndex(where: { $0.id == id }) {
             let indexPath = IndexPath(item: index, section: 0)
             return indexPath
         }
