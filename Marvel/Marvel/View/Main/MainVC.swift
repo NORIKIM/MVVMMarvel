@@ -10,7 +10,7 @@ import Toaster
 import Photos
 import Combine
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainCellDelegate, Storyboarded {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, MainCellDelegate, Storyboarded, MainVMDelegate {
     
     @IBOutlet weak var characterCV: UICollectionView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
@@ -42,6 +42,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         self.navigationItem.rightBarButtonItem = favoriteBTN
         self.navigationItem.rightBarButtonItem?.tintColor = .red
                 
+        viewModel.delegate = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didiUnFavoriteFromFavoriteVC(_:)), name: Notification.Name.favorite, object: nil)
     }
     
@@ -172,6 +174,7 @@ extension MainVC {
         let height = scrollView.frame.height
         
         if offsetY >= (contentHeight - height) {
+            indicator.startAnimating()
             viewModel.loadNextPage()
         }
     }
