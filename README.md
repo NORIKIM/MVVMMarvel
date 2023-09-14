@@ -29,5 +29,5 @@ UI 프레임워크: UIKit
 <img width="50%" src="https://github.com/NORIKIM/MVVMMarvel/assets/31604976/d0f023e8-1a71-48bb-9aa9-72397cf9db31">
 <img width="50%" src="https://github.com/NORIKIM/MVVMMarvel/assets/31604976/f0373ef6-52ab-454a-96e4-6c94f15adef3">
 <img width="50%" src="https://github.com/NORIKIM/MVVMMarvel/assets/31604976/57ab3a7f-f697-4003-bbb1-6d65f6ecd07d">
-<img width="50%" src="https://github.com/NORIKIM/MVVMMarvel/assets/31604976/93c09654-632d-44a8-923f-98ff6e184825">
+<img width="50%" src="https://github.com/NORIKIM/MVVMMarvel/assets/31604976/93c09654-632d-44a8-923f-98ff6e184825"><br>
 <img widht="50%" src="https://github.com/NORIKIM/MVVMMarvel/assets/31604976/0f5af0d5-e5a0-4561-994e-e3aa1b6d8c29">
