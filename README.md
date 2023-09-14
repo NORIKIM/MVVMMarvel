@@ -1,5 +1,29 @@
 # MVVMMarvel
-마블 캐릭터 표시<br>
+[마블 API 이용](https://developer.marvel.com/)
+
 <br>
-https://developer.marvel.com/ 에서 API 키 발급
+
+마블 캐릭터 보여주고 선택한 캐릭터에 대한 정보를 제공합니다.
+
+<br>
+
+캐릭터들은 20개씩 보여주며 페이지네이션을 적용했습니다. 더 이상 가져올 데이터가 없을 경우 마지막 페이지 임을 사용자에게 알려줍니다.
+
+<br>
+
+캐릭터를 즐겨찾기 기능을 하며 UserDefaults에 즐겨찾기한 캐릭터에 대한 데이터를 저장하여 사용합니다.
+
+<br>
+
+캐릭터의 이미지는 메모리 캐시를 이용하여 관리합니다.
+
+<br>
+
+UI 프레임워크: UIKit
+
+네트워크: Moya, Combine
+
+디자인패턴: MVVM-C
+
+<br>
 
