@@ -41,7 +41,9 @@ class Service {
     private var subsription = Set<AnyCancellable>()
     
     func requestCharacter(page: Int) -> Future<CharacterDataWrapper, Error> {
-        return Future<CharacterDataWrapper, Error> { promise in
+        return Future<CharacterDataWrapper, Error> { [weak self] promise in
+            guard let self = self else { return }
+            
             self.provider.requestPublisher(.characters(page: page))
                 .sink(receiveCompletion: { completion in
                     switch completion {

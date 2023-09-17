@@ -60,19 +60,19 @@ class MainVM {
                 case .failure(let err):
                     print("Error is \(err.localizedDescription)")
                 }
-            } receiveValue: { characterData in
-                self.totalCharacter = (characterData.data?.total)!
-                self.currentPage = page
+            } receiveValue: { [weak self] characterData in
+                self?.totalCharacter = (characterData.data?.total)!
+                self?.currentPage = page
                 
-                if self.currentPage > -1 {
-                    if self.characters.value.count == self.totalCharacter {
-                        self.isLastPage = true
-                        self.delegate?.showLastPageToast()
+                if self?.currentPage ?? 0 > -1 {
+                    if self?.characters.value.count == self?.totalCharacter {
+                        self?.isLastPage = true
+                        self?.delegate?.showLastPageToast()
                     }
                 }
                 
-                self.characters.send(self.characters.value + (characterData.data?.results ?? []))
-                self.isLoading = false
+                self?.characters.send((self?.characters.value ?? []) + (characterData.data?.results ?? []))
+                self?.isLoading = false
             }.store(in: &self.cancellables)
     }
     
