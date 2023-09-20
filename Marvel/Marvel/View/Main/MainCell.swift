@@ -74,8 +74,7 @@ class MainCell: UICollectionViewCell {
     }
     
     func loadImage(url: String?) {
-        if let urlString = url {
-            let urlData = URL(string: urlString)!
+        if let urlString = url, let urlData = URL(string: urlString) {
             characterIMG.loadImage(from: urlData) { _ in
                 DispatchQueue.main.async {
                     
@@ -147,9 +146,12 @@ class MainCell: UICollectionViewCell {
     }
     
     func removeFavoriteFromList(_ character: Character) {
-        var favoriteList = UserDefaultsManager.favoriteList!
-        let index = favoriteList.firstIndex(where: { $0.id == character.id })
-        favoriteList.remove(at: Int(index!))
-        UserDefaultsManager.favoriteList = favoriteList
+        if let favoriteList = UserDefaultsManager.favoriteList {
+            var list = favoriteList
+            let index = list.firstIndex(where: { $0.id == character.id })
+            list.remove(at: Int(index!))
+            UserDefaultsManager.favoriteList = list
+        }
+        
     }
 }

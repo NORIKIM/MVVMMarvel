@@ -73,8 +73,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
         
         // 이미지 저장
-        let thumbnail = character.thumbnail?.path!
-        if thumbnail!.contains("image_not_available") == false {
+        guard let thumbnail = character.thumbnail, let path = thumbnail.path else { return }
+        if path.contains("image_not_available") == false {
             actionSheet.addAction(UIAlertAction(title: "이미지 저장", style: .default, handler: { _ in self.saveCharacterImage(characterImage) }))
         }
         
@@ -82,11 +82,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         actionSheet.addAction(UIAlertAction(title: "wiki", style: .default, handler: { _ in self.openWiki(url: character.urls) }))
         
         // 더보기
-        let comicCount = character.comics?.returned
-        let seiesCount = character.series?.returned
-        let storyCount = character.stories?.returned
-        let eventCount = character.events?.returned
-        let sum = comicCount! + seiesCount! + storyCount! + eventCount!
+        guard let comic = character.comics, let comicCount = comic.returned else { return }
+        guard let seies = character.series, let seiesCount = seies.returned else { return }
+        guard let story = character.stories, let storyCount = story.returned else { return }
+        guard let event = character.events, let eventCount = event.returned else { return }
+        let sum = comicCount + seiesCount + storyCount + eventCount
         
         if sum > 0 {
             actionSheet.addAction(UIAlertAction(title: "더보기 ...", style: .default, handler: { _ in self.moveToCharacterDetailVC(character) }))
@@ -106,13 +106,13 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     func openWiki(url: [Url]?) {
         if let characterUrls = url {
             let wiki = characterUrls.filter { $0.type == "wiki" }.first
-            var link = characterUrls[0].url!
+            var link = characterUrls[0].url
             
-            if wiki != nil {
-                link = wiki!.url!
+            if let wiki = wiki {
+                link = wiki.url
             }
             
-            if let wikiUrl = URL(string: link), UIApplication.shared.canOpenURL(wikiUrl) {
+            if let url = link, let wikiUrl = URL(string: url), UIApplication.shared.canOpenURL(wikiUrl) {
                 UIApplication.shared.open(wikiUrl)
             }
         }

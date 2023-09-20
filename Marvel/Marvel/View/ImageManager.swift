@@ -43,7 +43,10 @@ class ImageManager: NSObject {
         
         alert.addAction(confirm)
         
-        viewController!.present(alert, animated: true)
+        if let vc = viewController {
+            vc.present(alert, animated: true)
+        }
+        
     }
     
     func showToast(message: String, duration: TimeInterval) {

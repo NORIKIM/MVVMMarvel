@@ -61,7 +61,7 @@ class MainVM {
                     print("Error is \(err.localizedDescription)")
                 }
             } receiveValue: { [weak self] characterData in
-                self?.totalCharacter = (characterData.data?.total)!
+                self?.totalCharacter = (characterData.data?.total) ?? 0
                 self?.currentPage = page
                 
                 if self?.currentPage ?? 0 > -1 {

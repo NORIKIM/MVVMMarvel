@@ -35,20 +35,24 @@ class CharacterDetailListVC: UIViewController, Storyboarded, UITableViewDelegate
         let series = character.series
         let story = character.stories
         let event = character.events
+        let comicItem = comic?.items ?? [CSSESummary]()
+        let seriesItem = series?.items ?? [CSSESummary]()
+        let storyItem = story?.items ?? [CSSESummary]()
+        let eventItem = event?.items ?? [CSSESummary]()
         
-        if (comic?.items!.count)! > 0 {
+        if comicItem.count > 0 {
             let dic = ["comic":comic!]
             data.append(dic)
         }
-        if (series?.items!.count)! > 0 {
+        if seriesItem.count > 0 {
             let dic = ["series":series!]
             data.append(dic)
         }
-        if (story?.items!.count)! > 0 {
+        if storyItem.count > 0 {
             let dic = ["story":story!]
             data.append(dic)
         }
-        if (event?.items!.count)! > 0 {
+        if eventItem.count > 0 {
             let dic = ["event":event!]
             data.append(dic)
         }
@@ -93,9 +97,10 @@ extension CharacterDetailListVC {
         
         let key = findKey(from: data[section])
         let data = data[section][key]
-        let dataItem = data?.items
+        if let dataItem = data?.items {
+            content.text = dataItem[index].name
+        }
         
-        content.text = dataItem![index].name
         cell.contentConfiguration = content
         return cell
     }
