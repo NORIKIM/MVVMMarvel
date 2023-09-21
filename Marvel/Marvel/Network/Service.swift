@@ -37,6 +37,8 @@ import Combine
 
 class Service {
     static let shared = Service()
+    private init() {}
+    
     private let provider = MoyaProvider<Network>()
     private var subsription = Set<AnyCancellable>()
     

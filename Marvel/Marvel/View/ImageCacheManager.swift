@@ -8,8 +8,8 @@
 import UIKit
 
 class ImageCacheManager: UIImageView {
-    var imageUrlString: String?
-    let imageCache = NSCache<NSString, UIImage>()
+    private var imageUrlString: String?
+    private let imageCache = NSCache<NSString, UIImage>()
     
     func loadImage(from url: URL, completion: ((Error?)-> Void)? = nil) {
         self.imageUrlString = url.absoluteString

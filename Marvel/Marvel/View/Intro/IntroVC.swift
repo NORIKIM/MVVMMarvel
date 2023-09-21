@@ -20,7 +20,7 @@ class IntroVC: UIViewController, Storyboarded {
         moveToMainVC()
     }
 
-    func playIntroVideo() {
+    private func playIntroVideo() {
         if let filePath:String = Bundle.main.path(forResource: "intro", ofType: "mp4") {
             let url = NSURL(fileURLWithPath: filePath)
             let player = AVPlayer(url: url as URL)
@@ -36,7 +36,7 @@ class IntroVC: UIViewController, Storyboarded {
         }
     }
     
-    func moveToMainVC() {
+    private func moveToMainVC() {
         let time = DispatchTime.now() + 5
         DispatchQueue.main.asyncAfter(deadline: time) {
             self.coordinator?.moveToMainVC()

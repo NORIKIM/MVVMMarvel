@@ -35,7 +35,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
                .store(in: &cancellables)
     }
     
-    func setUI() {
+    private func setUI() {
         indicator.startAnimating()
         
         let favoriteBTN = UIBarButtonItem(image: UIImage(named: "favorite")!, style: .done, target: self, action: #selector(moveToFavoriteVC(_:)))
@@ -47,7 +47,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(didiUnFavoriteFromFavoriteVC(_:)), name: Notification.Name.favorite, object: nil)
     }
     
-    func setCollection() {
+    private func setCollection() {
         characterCV.delegate = self
         characterCV.dataSource = self
         characterCV.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
@@ -57,17 +57,17 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         showToast(message: "마지막 페이지 입니다.", duration: Delay.short)
     }
     
-    func showToast(message: String, duration: TimeInterval) {
+    private func showToast(message: String, duration: TimeInterval) {
         Toast(text: message, duration: duration).show()
     }
     
     // 즐겨찾기
-    @objc func moveToFavoriteVC(_ sender: UIBarButtonItem) {
+    @objc private func moveToFavoriteVC(_ sender: UIBarButtonItem) {
         self.coordinator?.moveToFavoriteVC()
     }
     
     // Action Sheet
-    func showActionSheet(_ character: Character, characterImage: UIImage?) {
+    private func showActionSheet(_ character: Character, characterImage: UIImage?) {
         guard let characterImage = characterImage else { return }
         
         let actionSheet = UIAlertController(title: character.name, message: nil, preferredStyle: .actionSheet)
@@ -99,11 +99,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func saveCharacterImage(_ image: UIImage) {
+    private func saveCharacterImage(_ image: UIImage) {
         ImageManager().saveImage(image, target: self)
     }
 
-    func openWiki(url: [Url]?) {
+    private func openWiki(url: [Url]?) {
         if let characterUrls = url {
             let wiki = characterUrls.filter { $0.type == "wiki" }.first
             var link = characterUrls[0].url
@@ -118,7 +118,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         }
     }
     
-    func moveToCharacterDetailVC(_ character: Character) {
+    private func moveToCharacterDetailVC(_ character: Character) {
         coordinator?.moveToCharacterDetailListVC(character)
     }
 }
@@ -158,7 +158,7 @@ extension MainVC {
         }
     }
     // 즐겨찾기 화면에서 즐겨찾기 해제 후 호출
-    @objc func didiUnFavoriteFromFavoriteVC(_ noti: Notification) {
+    @objc private func didiUnFavoriteFromFavoriteVC(_ noti: Notification) {
         guard let id = noti.userInfo?[NotificationKey.favorite] as? Int else { return }
         if let indexPath = viewModel.character(at: id) {
             DispatchQueue.main.async {

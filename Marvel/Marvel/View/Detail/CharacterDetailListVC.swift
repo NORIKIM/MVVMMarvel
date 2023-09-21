@@ -13,8 +13,8 @@ class CharacterDetailListVC: UIViewController, Storyboarded, UITableViewDelegate
     
     weak var coordinator: MainCoordinator?
     var character: Character!
-    let cellID = "detailCell"
-    var data = [[String: CSSEList]]()
+    private let cellID = "detailCell"
+    private var data = [[String: CSSEList]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +23,14 @@ class CharacterDetailListVC: UIViewController, Storyboarded, UITableViewDelegate
         makeData()
     }
     
-    func setUI() {
+    private func setUI() {
         self.navigationItem.title = character?.name
         
         detailTB.delegate = self
         detailTB.dataSource = self
     }
     
-    func makeData() {
+    private func makeData() {
         let comic = character.comics
         let series = character.series
         let story = character.stories
@@ -58,7 +58,7 @@ class CharacterDetailListVC: UIViewController, Storyboarded, UITableViewDelegate
         }
     }
     
-    func findKey(from dic:[String: CSSEList]) -> String {
+    private func findKey(from dic:[String: CSSEList]) -> String {
         var keyString = ""
         
         for (key, _) in dic {

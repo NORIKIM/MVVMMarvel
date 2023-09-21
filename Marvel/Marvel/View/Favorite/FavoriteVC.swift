@@ -12,7 +12,7 @@ class FavoriteVC: UIViewController, Storyboarded, UICollectionViewDelegate, UICo
     @IBOutlet weak var noListView: UIView!
     
     weak var coordinator: MainCoordinator?
-    let cellID = "MainCell"
+    private let cellID = "MainCell"
     var character: [Character] = []
 
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class FavoriteVC: UIViewController, Storyboarded, UICollectionViewDelegate, UICo
         settingCollection()
     }
 
-    func listView() {
+    private func listView() {
         guard let favoriteList = UserDefaultsManager.favoriteList else { return }
         
         if  favoriteList.count != 0 {
@@ -35,7 +35,7 @@ class FavoriteVC: UIViewController, Storyboarded, UICollectionViewDelegate, UICo
         }
     }
     
-    func settingCollection() {
+    private func settingCollection() {
         characterCV.delegate = self
         characterCV.dataSource = self
         characterCV.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)

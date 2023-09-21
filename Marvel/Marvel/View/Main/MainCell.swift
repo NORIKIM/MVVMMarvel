@@ -43,7 +43,7 @@ class MainCell: UICollectionViewCell {
         eventLB.text = "event "
     }
     
-    func settingCell() {
+    private func settingCell() {
         if let character = character {
             if let path = character.thumbnail?.path, let extensionString = character.thumbnail?.extensionString {
                 let characterImageURL = "\(path).\(extensionString)"
@@ -73,7 +73,7 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    func loadImage(url: String?) {
+    private func loadImage(url: String?) {
         if let urlString = url, let urlData = URL(string: urlString) {
             characterIMG.loadImage(from: urlData) { _ in
                 DispatchQueue.main.async {
@@ -83,7 +83,7 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    @objc func didSelectFavoriteButton(_ sender: UIButton) {
+    @objc private func didSelectFavoriteButton(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         
         if let character = character {
@@ -99,7 +99,7 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    func settingFavorite(character: Character) -> UIImage {
+    private func settingFavorite(character: Character) -> UIImage {
         let unFavoriteImage = UIImage(named: "emptyFavorite")!
         let favoriteImage = UIImage(named: "favorite")!
         let isFavorite = isFavorited(character)
@@ -111,7 +111,7 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    func isFavorited(_ character: Character) -> Bool {
+    private func isFavorited(_ character: Character) -> Bool {
         if let id = character.id {
            return (UserDefaults.standard.object(forKey: "\(id)") as? Bool) ?? false
         } else {
@@ -119,14 +119,14 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    func favorite(_ character: Character) {
+    private func favorite(_ character: Character) {
         if let id = character.id {
             UserDefaults.standard.set(true, forKey: "\(id)")
             appendFavoriteToList(character)
         }
     }
     
-    func unfavorite(_ character: Character) {
+    private func unfavorite(_ character: Character) {
         if let id = character.id {
             UserDefaults.standard.removeObject(forKey: "\(id)")
             removeFavoriteFromList(character)
@@ -134,7 +134,7 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    func appendFavoriteToList(_ character: Character) {
+    private func appendFavoriteToList(_ character: Character) {
         var favoriteList = UserDefaultsManager.favoriteList
         
         if favoriteList == nil {
@@ -145,7 +145,7 @@ class MainCell: UICollectionViewCell {
         }
     }
     
-    func removeFavoriteFromList(_ character: Character) {
+    private func removeFavoriteFromList(_ character: Character) {
         if let favoriteList = UserDefaultsManager.favoriteList {
             var list = favoriteList
             let index = list.firstIndex(where: { $0.id == character.id })

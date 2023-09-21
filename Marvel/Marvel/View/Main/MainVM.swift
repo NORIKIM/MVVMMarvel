@@ -16,10 +16,10 @@ class MainVM {
     weak var delegate: MainVMDelegate?
     private var cancellables = Set<AnyCancellable>()
     var characters = CurrentValueSubject<[Character], Never>([Character]())
-    var isFirstLoad: Bool {
+    private var isFirstLoad: Bool {
         return currentPage == -1
     }
-    var isLoading = false
+    private var isLoading = false
     private let itemsPerPage: Int = 20
     private var currentPage: Int = -1
     private var isLastPage = false
@@ -35,7 +35,7 @@ class MainVM {
         characters.value.removeAll()
     }
     
-    func loadCharacters() {
+    private func loadCharacters() {
         guard isFirstLoad else {
             return
         }
@@ -43,7 +43,7 @@ class MainVM {
         requestCharacter(page: 0)
     }
     
-    func requestCharacter(page: Int) {
+    private func requestCharacter(page: Int) {
         if !canLoadPage(page: page) {
             return
         }
@@ -76,7 +76,7 @@ class MainVM {
             }.store(in: &self.cancellables)
     }
     
-    func canLoadPage(page: Int) -> Bool {
+    private func canLoadPage(page: Int) -> Bool {
         return self.currentPage != page && !isLastPage
     }
     
